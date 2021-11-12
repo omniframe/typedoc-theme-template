@@ -1,0 +1,54 @@
+{
+	"name": "typedoc-theme-__THEME_NAME__",
+	"version": "1.0.0-alpha.0",
+	"description": "A custom theme for Typedoc.",
+	"author": "__AUTHOR_NAME__ <__AUTHOR_EMAIL__>",
+	"homepage": "__HOMEPAGE__",
+	"license": "__LICENSE_NAME__",
+	"keywords": [
+		"typedocplugin"
+	],
+	"main": "./dist/index.js",
+	"module": "./src/index.ts",
+	"typings": "./dist/index.d.ts",
+	"scripts": {
+		"build": "NODE_ENV=production rm -rf ./dist && tsc -P tsconfig.json && mkdir -p ./dist/styles && cp ./src/styles/custom.css \"$_\"",
+		"lint": "eslint ./src/* --ext=ts --fix"
+	},
+	"devDependencies": {
+		"@types/node": "^16.11.7",
+		"@typescript-eslint/eslint-plugin": "^5.3.1",
+		"@typescript-eslint/parser": "^5.3.1",
+		"eslint": "^8.2.0",
+		"eslint-plugin-prettier": "^4.0.0",
+		"prettier": "^2.4.1",
+		"typedoc": "^0.22.8",
+		"typescript": "^4.4.4"
+	},
+	"peerDependencies": {
+		"typedoc": "0.22.x"
+	},
+	"eslintConfig": {
+		"extends": [
+			"plugin:@typescript-eslint/recommended"
+		],
+		"plugins": [
+			"prettier"
+		],
+		"rules": {
+			"prettier/prettier": "error"
+		}
+	},
+	"eslintIgnore": [
+		"./dist/",
+		"./node_modules"
+	],
+	"prettier": {
+		"semi": true,
+		"trailingComma": "all",
+		"singleQuote": true,
+		"printWidth": 80,
+		"tabWidth": 2,
+		"useTabs": true
+	}
+}
