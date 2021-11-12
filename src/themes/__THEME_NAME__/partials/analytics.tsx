@@ -1,11 +1,11 @@
 import { JSX } from 'typedoc';
 import type { __THEME_NAME__ThemeRenderContext } from '../__THEME_NAME__ThemeRenderContext';
 
-export const analytics = ( context: __THEME_NAME__ThemeRenderContext ) => {
-	const gaID = context.options.getValue( 'gaID' );
-	const gaSite = context.options.getValue( 'gaSite' );
+export const analytics = (context: __THEME_NAME__ThemeRenderContext) => {
+	const gaID = context.options.getValue('gaID');
+	const gaSite = context.options.getValue('gaSite');
 
-	if ( !gaID ) {
+	if (!gaID) {
 		return;
 	}
 

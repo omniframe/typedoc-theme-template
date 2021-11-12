@@ -7,21 +7,21 @@ export const memberReference = (
 ) => {
 	const referenced = props.tryGetTargetReflectionDeep();
 
-	if ( !referenced ) {
+	if (!referenced) {
 		return <>Re-exports {props.name}</>;
 	}
 
-	if ( props.name === referenced.name ) {
+	if (props.name === referenced.name) {
 		return (
 			<>
-				Re-exports <a href={urlTo( referenced )}>{referenced.name}</a>
+				Re-exports <a href={urlTo(referenced)}>{referenced.name}</a>
 			</>
 		);
 	}
 
 	return (
 		<>
-			Renames and re-exports <a href={urlTo( referenced )}>{referenced.name}</a>
+			Renames and re-exports <a href={urlTo(referenced)}>{referenced.name}</a>
 		</>
 	);
 };

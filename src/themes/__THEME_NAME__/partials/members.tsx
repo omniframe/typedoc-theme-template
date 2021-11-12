@@ -1,16 +1,16 @@
 import { ContainerReflection, JSX } from 'typedoc';
 import type { __THEME_NAME__ThemeRenderContext } from '../__THEME_NAME__ThemeRenderContext';
 
-export function members( context: __THEME_NAME__ThemeRenderContext, props: ContainerReflection ) {
-	if ( props.categories && props.categories.length ) {
+export function members(context: __THEME_NAME__ThemeRenderContext, props: ContainerReflection) {
+	if (props.categories && props.categories.length) {
 		return (
 			<>
 				{props.categories.map(
-					( item ) =>
+					(item) =>
 						!item.allChildrenHaveOwnDocument() && (
 							<section class={`tsd-panel-group tsd-member-group ${props.cssClasses}`}>
 								<h2>{item.title}</h2>
-								{item.children.map( ( item ) => !item.hasOwnDocument && context.member( item ) )}
+								{item.children.map((item) => !item.hasOwnDocument && context.member(item))}
 							</section>
 						)
 				)}
@@ -19,6 +19,6 @@ export function members( context: __THEME_NAME__ThemeRenderContext, props: Conta
 	}
 
 	return <>{props.groups?.map(
-		( item ) => !item.allChildrenHaveOwnDocument() && context.membersGroup( item )
+		(item) => !item.allChildrenHaveOwnDocument() && context.membersGroup(item)
 	)}</>;
 }

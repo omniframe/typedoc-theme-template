@@ -15,8 +15,8 @@ export function insertPrioritySorted<T extends { priority: number }>(
 	arr: T[],
 	item: T
 ): T[] {
-	const index = binaryFindPartition( arr, ( v ) => v.priority >= item.priority );
-	arr.splice( index === -1 ? arr.length : index, 0, item );
+	const index = binaryFindPartition(arr, (v) => v.priority >= item.priority);
+	arr.splice(index === -1 ? arr.length : index, 0, item);
 	return arr;
 }
 
@@ -31,8 +31,8 @@ export function insertOrderSorted<T extends { order: number }>(
 	arr: T[],
 	item: T
 ): T[] {
-	const index = binaryFindPartition( arr, ( v ) => v.order > item.order );
-	arr.splice( index === -1 ? arr.length : index, 0, item );
+	const index = binaryFindPartition(arr, (v) => v.order > item.order);
+	arr.splice(index === -1 ? arr.length : index, 0, item);
 	return arr;
 }
 
@@ -45,25 +45,25 @@ export function insertOrderSorted<T extends { order: number }>(
 */
 export function binaryFindPartition<T>(
 	arr: readonly T[],
-	partition: ( item: T ) => boolean
+	partition: (item: T) => boolean
 ): number {
-	if ( arr.length === 0 ) {
+	if (arr.length === 0) {
 		return -1;
 	}
 
 	let low = 0,
 		high = arr.length - 1;
 
-	while ( high > low ) {
-		const mid = low + Math.floor( ( high - low ) / 2 );
-		if ( partition( arr[ mid ] ) ) {
+	while (high > low) {
+		const mid = low + Math.floor((high - low) / 2);
+		if (partition(arr[ mid ])) {
 			high = mid;
 		} else {
 			low = mid + 1;
 		}
 	}
 
-	return partition( arr[ low ] ) ? low : -1;
+	return partition(arr[ low ]) ? low : -1;
 }
 
 /**
@@ -72,13 +72,13 @@ export function binaryFindPartition<T>(
 * @param arr
 * @param item
 */
-export function removeIfPresent<T>( arr: T[] | undefined, item: T ) {
-	if ( !arr ) {
+export function removeIfPresent<T>(arr: T[] | undefined, item: T) {
+	if (!arr) {
 		return;
 	}
-	const index = arr.indexOf( item );
-	if ( index !== -1 ) {
-		arr.splice( index, 1 );
+	const index = arr.indexOf(item);
+	if (index !== -1) {
+		arr.splice(index, 1);
 	}
 }
 
@@ -87,12 +87,12 @@ export function removeIfPresent<T>( arr: T[] | undefined, item: T ) {
 * @param arr
 * @param predicate
 */
-export function removeIf<T>( arr: T[], predicate: ( item: T ) => boolean ) {
-	const indices = filterMap( arr, ( item, index ) =>
-		predicate( item ) ? index : void 0
+export function removeIf<T>(arr: T[], predicate: (item: T) => boolean) {
+	const indices = filterMap(arr, (item, index) =>
+		predicate(item) ? index : void 0
 	);
-	for ( const index of indices.reverse() ) {
-		arr.splice( index, 1 );
+	for (const index of indices.reverse()) {
+		arr.splice(index, 1);
 	}
 }
 
@@ -100,22 +100,22 @@ export function removeIf<T>( arr: T[], predicate: ( item: T ) => boolean ) {
 * Filters out duplicate values from the given iterable.
 * @param arr
 */
-export function unique<T>( arr: Iterable<T> | undefined ): T[] {
-	return Array.from( new Set( arr ) );
+export function unique<T>(arr: Iterable<T> | undefined): T[] {
+	return Array.from(new Set(arr));
 }
 
 export function partition<T>(
 	iter: Iterable<T>,
-	predicate: ( item: T ) => boolean
+	predicate: (item: T) => boolean
 ): [ T[], T[] ] {
 	const left: T[] = [];
 	const right: T[] = [];
 
-	for ( const item of iter ) {
-		if ( predicate( item ) ) {
-			left.push( item );
+	for (const item of iter) {
+		if (predicate(item)) {
+			left.push(item);
 		} else {
-			right.push( item );
+			right.push(item);
 		}
 	}
 
@@ -126,55 +126,55 @@ export function partition<T>(
 * Ensures the given item is an array.
 * @param item
 */
-export function toArray<T>( item: T | readonly T[] | undefined ): T[] {
-	if ( item === void 0 ) {
+export function toArray<T>(item: T | readonly T[] | undefined): T[] {
+	if (item === void 0) {
 		return [];
 	}
-	return Array.isArray( item ) ? [ ...item ] : [ item ];
+	return Array.isArray(item) ? [ ...item ] : [ item ];
 }
 
 export function* zip<T extends Iterable<any>[]>(
 	...args: T
 ): Iterable<{ [ K in keyof T ]: T[ K ] extends Iterable<infer U> ? U : T[ K ] }> {
-	const iterators = args.map( ( x ) => x[ Symbol.iterator ]() );
+	const iterators = args.map((x) => x[ Symbol.iterator ]());
 
-	while ( true ) {
-		const next = iterators.map( ( i ) => i.next() );
-		if ( next.some( ( v ) => v.done ) ) {
+	while (true) {
+		const next = iterators.map((i) => i.next());
+		if (next.some((v) => v.done)) {
 			break;
 		}
-		yield next.map( ( v ) => v.value ) as any;
+		yield next.map((v) => v.value) as any;
 	}
 }
 
 export function filterMap<T, U>(
 	arr: readonly T[],
-	fn: ( item: T, index: number ) => U | undefined
+	fn: (item: T, index: number) => U | undefined
 ): U[] {
 	const result: U[] = [];
 
-	arr.forEach( ( item, index ) => {
-		const newItem = fn( item, index );
-		if ( newItem !== void 0 ) {
-			result.push( newItem );
+	arr.forEach((item, index) => {
+		const newItem = fn(item, index);
+		if (newItem !== void 0) {
+			result.push(newItem);
 		}
-	} );
+	});
 
 	return result;
 }
 
 export function flatMap<T, U>(
 	arr: readonly T[],
-	fn: ( item: T ) => U | readonly U[] | undefined
+	fn: (item: T) => U | readonly U[] | undefined
 ): U[] {
 	const result: U[] = [];
 
-	for ( const item of arr ) {
-		const newItem = fn( item );
-		if ( newItem instanceof Array ) {
-			result.push( ...newItem );
-		} else if ( newItem != null ) {
-			result.push( newItem );
+	for (const item of arr) {
+		const newItem = fn(item);
+		if (newItem instanceof Array) {
+			result.push(...newItem);
+		} else if (newItem != null) {
+			result.push(newItem);
 		}
 	}
 

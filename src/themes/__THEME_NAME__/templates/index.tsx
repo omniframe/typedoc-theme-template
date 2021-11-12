@@ -7,7 +7,7 @@ export const indexTemplate = (
 ) => {
 	return (
 		<div class="tsd-panel tsd-typography">
-			<JSX.Raw html={markdown( props.model.readme )} />
+			<JSX.Raw html={markdown(props.model.readme)} />
 		</div>
 	);
 };

@@ -9,24 +9,24 @@ export const memberSources = (
 		{!!props.implementationOf && (
 			<p>
 				{'Implementation of '}
-				{context.typeAndParent( props.implementationOf )}
+				{context.typeAndParent(props.implementationOf)}
 			</p>
 		)}
 		{!!props.inheritedFrom && (
 			<p>
 				{'Inherited from '}
-				{context.typeAndParent( props.inheritedFrom )}
+				{context.typeAndParent(props.inheritedFrom)}
 			</p>
 		)}
 		{!!props.overwrites && (
 			<p>
 				{'Overrides '}
-				{context.typeAndParent( props.overwrites )}
+				{context.typeAndParent(props.overwrites)}
 			</p>
 		)}
 		{!!props.sources && (
 			<ul>
-				{props.sources.map( ( item ) =>
+				{props.sources.map((item) =>
 					item.url ? (
 						<li>
 							{'Defined in '}

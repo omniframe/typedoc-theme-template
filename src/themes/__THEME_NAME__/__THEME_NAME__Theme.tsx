@@ -4,8 +4,8 @@ import { __THEME_NAME__ThemeRenderContext } from './__THEME_NAME__ThemeRenderCon
 export class __THEME_NAME__Theme extends DefaultTheme {
 	private _contextCache?: __THEME_NAME__ThemeRenderContext;
 
-	constructor( renderer: Renderer ) {
-		super( renderer );
+	constructor(renderer: Renderer) {
+		super(renderer);
 	}
 
 	override getRenderContext(): __THEME_NAME__ThemeRenderContext {

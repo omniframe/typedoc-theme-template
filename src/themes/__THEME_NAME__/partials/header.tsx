@@ -10,7 +10,7 @@ export const header = (
 		<div class="tsd-page-toolbar">
 			<div class="container">
 				<div class="table-wrap">
-					<div class="table-cell" id="tsd-search" data-base={context.relativeURL( './' )}>
+					<div class="table-cell" id="tsd-search" data-base={context.relativeURL('./')}>
 						<div class="field">
 							<label for="tsd-search-field" class="tsd-widget search no-caption">
 								Search
@@ -23,7 +23,7 @@ export const header = (
 							<li class="state failure">The search index is not available</li>
 						</ul>
 
-						<a href={context.relativeURL( 'index.html' )} class="title">
+						<a href={context.relativeURL('index.html')} class="title">
 							{props.project.name}
 						</a>
 					</div>
@@ -48,7 +48,7 @@ export const header = (
 								<label class="tsd-widget" for="tsd-filter-inherited">
 									Inherited
 								</label>
-								{!context.options.getValue( 'excludeExternals' ) && (
+								{!context.options.getValue('excludeExternals') && (
 									<>
 										<input type="checkbox" id="tsd-filter-externals" checked={true} />
 										<label class="tsd-widget" for="tsd-filter-externals">
@@ -68,15 +68,15 @@ export const header = (
 		</div>
 		<div class="tsd-page-title">
 			<div class="container">
-				{!!props.model.parent && <ul class="tsd-breadcrumb">{context.breadcrumb( props.model )}</ul>}
+				{!!props.model.parent && <ul class="tsd-breadcrumb">{context.breadcrumb(props.model)}</ul>}
 				<h1>
 					{props.model.kindString !== 'Project' && `${props.model.kindString ?? ''} `}
 					{props.model.kindString === 'Project' && '📦 '}
 					{props.model.name}
-					{hasTypeParameters( props.model ) && (
+					{hasTypeParameters(props.model) && (
 						<>
 							{'<'}
-							{join( ', ', props.model.typeParameters, ( item ) => item.name )}
+							{join(', ', props.model.typeParameters, (item) => item.name)}
 							{'>'}
 						</>
 					)}

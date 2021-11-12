@@ -8,27 +8,27 @@ export const memberSignatureBody = (
 	{ hideSources = false }: { hideSources?: boolean } = {}
 ) => (
 	<>
-		{!hideSources && context.memberSources( props )}
-		{context.comment( props )}
+		{!hideSources && context.memberSources(props)}
+		{context.comment(props)}
 
 		{!!props.typeParameters && (
 			<>
 				<h4 class="tsd-type-parameters-title">Type parameters</h4>
-				{context.typeParameters( props.typeParameters )}
+				{context.typeParameters(props.typeParameters)}
 			</>
 		)}
 		{props.parameters && props.parameters.length > 0 && (
 			<>
 				<h4 class="tsd-parameters-title">Parameters</h4>
 				<ul class="tsd-parameters">
-					{props.parameters.map( ( item ) => (
+					{props.parameters.map((item) => (
 						<li>
 							<h5>
-								{renderFlags( item.flags )}
+								{renderFlags(item.flags)}
 								{!!item.flags.isRest && <span class="tsd-signature-symbol">...</span>}
 								{item.name}
 								{": "}
-								{context.type( item.type )}
+								{context.type(item.type)}
 								{item.defaultValue != null && (
 									<span class="tsd-signature-symbol">
 										{" = "}
@@ -36,10 +36,10 @@ export const memberSignatureBody = (
 									</span>
 								)}
 							</h5>
-							{context.comment( item )}
-							{item.type instanceof ReflectionType && context.parameter( item.type.declaration )}
+							{context.comment(item)}
+							{item.type instanceof ReflectionType && context.parameter(item.type.declaration)}
 						</li>
-					) )}
+					))}
 				</ul>
 			</>
 		)}
@@ -47,14 +47,14 @@ export const memberSignatureBody = (
 			<>
 				<h4 class="tsd-returns-title">
 					{"Returns "}
-					{context.type( props.type )}
+					{context.type(props.type)}
 				</h4>
 				{!!props.comment?.returns && (
 					<div>
-						<JSX.Raw html={context.markdown( props.comment.returns )} />
+						<JSX.Raw html={context.markdown(props.comment.returns)} />
 					</div>
 				)}
-				{props.type instanceof ReflectionType && context.parameter( props.type.declaration )}
+				{props.type instanceof ReflectionType && context.parameter(props.type.declaration)}
 			</>
 		)}
 	</>
